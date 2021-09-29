@@ -69,11 +69,10 @@ router.post("/login", checkUsernameExists, (req, res, next) => {
     //make it so the cookie is set on the client
     //make it so the server stores a session with session Id
     req.session.user = req.user;
-    res.json({ message: `Welcome ${req.user.username}` });
+    res.json({ message: `Welcome ${req.user.username}!` });
   } else {
     console.log(req.session);
     next({ status: 401, message: "Invalid credentials" });
-    
   }
 });
 
@@ -93,7 +92,18 @@ router.post("/login", checkUsernameExists, (req, res, next) => {
   }
  */
 router.get("/logout", (req, res, next) => {
-  res.json({ message: "logout from auth" });
+  if (req.session.user) {
+    req.session.destroy(err =>{
+      err ? next() : res.json({status: 200, message: 'logged out'})
+      // if (err) {
+      //   next()
+      // } else {
+      //   res.json({status: 200, message: 'logged out'})
+      
+    });
+  } else {
+    next({ status: 200, message: "no session" });
+  }
 });
 
 // Don't forget to add the router to the `exports` object so it can be required in other modules
