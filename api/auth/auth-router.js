@@ -30,9 +30,14 @@ const {
   }
  */
 
-router.post("/register", checkPasswordLength, checkUsernameFree, (req, res, next) => {
-  res.json({ message: "register from auth" });
-});
+router.post(
+  "/register",
+  checkPasswordLength,
+  checkUsernameFree,
+  (req, res, next) => {
+    res.json({ message: "register from auth" });
+  }
+);
 
 /**
   2 [POST] /api/auth/login { "username": "sue", "password": "1234" }
