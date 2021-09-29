@@ -20,6 +20,7 @@ function restricted(req, res, next) {
   }
 */
 function checkUsernameFree(req, res, next) {
+  console.log('this is the checkUsernameFree middleware');
   next();
 }
 
@@ -32,6 +33,7 @@ function checkUsernameFree(req, res, next) {
   }
 */
 function checkUsernameExists(req, res, next) {
+  console.log('this is the checkUsernameExists middleware');
   next();
 }
 
@@ -44,6 +46,7 @@ function checkUsernameExists(req, res, next) {
   }
 */
 function checkPasswordLength(req, res, next) {
+  console.log('this is the checkPasswordLength middleware');
   next();
 }
 
